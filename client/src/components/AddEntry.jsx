@@ -1,7 +1,10 @@
 import { useState, useRef } from 'react';
 import axios from 'axios'
 
+
+
 const AddEntry = () => {
+
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -11,6 +14,9 @@ const AddEntry = () => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+
+
+  
 
   // CREATE (POST)
   function submitEntry() {
@@ -25,6 +31,38 @@ const AddEntry = () => {
     setLastName('')
     ref3.current.value = ""
     setEmailAddress('')
+    //alert("Successfully added")
+
+
+    console.log(document.getElementsByClassName("submitBtn")[0])
+    document.getElementsByClassName("submitBtn")[0].innerHTML = "Success!";
+    document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "green";
+
+  }
+
+  function refreshPage() {
+    //window.location.reload(false);
+  }
+
+  
+
+  let ifname = document.getElementById('firstName');
+  if (ifname) {
+    ifname.addEventListener('click', function(){document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
+    document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
+  })
+  }
+
+  let ilname = document.getElementById('lastName');
+  if (ilname) {
+    ilname.addEventListener('click', function(){document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
+    document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";})
+  }
+
+  let iemail = document.getElementById('email');
+  if (iemail) {
+    iemail.addEventListener('click', function(){document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
+    document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";})
   }
 
   return (
@@ -32,8 +70,12 @@ const AddEntry = () => {
       <h2>Add an Entry</h2>
       <div id='userInput'>
         <div>
-          <label htmlFor="firstName">First Name</label>
-          <input ref={ref1} id="firstName" type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)} />
+          <label htmlFor="firstName" >First Name</label>
+          <input ref={ref1} id="firstName" type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}
+
+
+
+          />
         </div>
         <div>
           <label htmlFor="lastName">Last Name</label>
@@ -46,13 +88,17 @@ const AddEntry = () => {
         <button className="submitBtn"
           onClick={() => {
             if (firstName.length > 0 && lastName.length > 0 && emailAddress.length > 0) {
-              submitEntry()
+              submitEntry(); refreshPage();
             }
-          }}
-        >Add Entry</button>
+          }
+          }
+        >Add Entry </button>
       </div>
     </div>
   )
+
+
 }
+
 
 export default AddEntry;

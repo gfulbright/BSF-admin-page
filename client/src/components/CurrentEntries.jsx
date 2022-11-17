@@ -136,7 +136,7 @@ const CurrentEntries = () => {
       <div className='userData'>
         {entryList.map((val, k) => {
           return (<div key={k}>
-            <div>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span> </div>
+            <div>{val.time_in}, {val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span> </div>
 
             <div className="editControls editGui">
               <button className='delete' onClick={() => {
