@@ -81,3 +81,8 @@ body {
 #submitEmailsButton{
   display: none;
 }
+
+#doneButton{
+  padding: 5px;
+  width:25%;
+}

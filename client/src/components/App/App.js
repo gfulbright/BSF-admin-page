@@ -7,10 +7,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Entries</h1>
+      <h1>BSF Admin</h1>
 
-      <AddEntry />
-      <hr />
+      {/* <AddEntry />
+      <hr /> */}
       <CurrentEntries />
     </div>
   )
