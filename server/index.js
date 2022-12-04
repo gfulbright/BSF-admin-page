@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // READ
 app.get("/api/read", (req, res) => {
-    const sqlSelect = "SELECT * FROM volunteers;"
+    const sqlSelect = "select first_name, last_name, email_address, team from volunteers;"
     db.query(sqlSelect, (err, result) => {
         if (err) {
             throw err;
@@ -39,19 +39,24 @@ const validateEmail = (email) => {
 
 // CREATE
 app.post("/api/create", (req, res) => {
-    const fn = req.body.first
-    const ln = req.body.last
+   
     const ea = req.body.email
 
     if (validateEmail(ea)) {
-        const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address) VALUES (?,?,?);"
-        db.query(sqlInsert, [fn, ln, ea], (err, result) => {
+        const fn = req.body.first
+        const ln = req.body.last
+        const t = req.body.team
+        
+        const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, team) VALUES (?,?,?,?);"
+        db.query(sqlInsert, [fn, ln, ea, t], (err, result) => {
             if (err) throw err
-            console.log("Server posted: ", fn, ln)
+            console.log("Server posted: ", fn, ln, t)
             res.send(result)
         })
     }
     else{
+        res.send("no valid email")
+
         throw 'No valid email';
     }
 
