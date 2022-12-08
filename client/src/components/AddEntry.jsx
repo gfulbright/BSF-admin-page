@@ -98,20 +98,20 @@ const AddEntry = () => {
       <div id='userInput'>
         <div>
           <label htmlFor="firstName" >First Name*</label>
-          <input ref={ref1} id="firstName" type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}
+          <input ref={ref1} id="firstName" type="text" name="firstName" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div>
           <label htmlFor="lastName">Last Name*</label>
-          <input ref={ref2} id="lastName" type="text" name="lastName" onChange={(e) => setLastName(e.target.value)} />
+          <input ref={ref2} id="lastName" type="text" name="lastName" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
         </div><br />
         <div className="emailField" >
           <label htmlFor="email">Email Address*</label>
-          <input ref={ref3} id="email" type="email" name="email" onChange={(e) => setEmailAddress(e.target.value)} />
+          <input ref={ref3} id="email" type="email" name="email" placeholder="Email Address" onChange={(e) => setEmailAddress(e.target.value)} />
         </div>
         <div>
           <label htmlFor="team" >Team</label>
-          <input ref={ref4} id="team" type="text" name="team" onChange={(e) => setTeam(e.target.value)}
+          <input ref={ref4} id="team" type="text" name="team" placeholder="Team Name" onChange={(e) => setTeam(e.target.value)}
           />
         </div>
         <button className="submitBtn"
