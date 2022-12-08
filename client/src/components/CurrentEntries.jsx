@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios'
+  let hidden =true;
 
 const CurrentEntries = () => {
 
@@ -72,6 +73,7 @@ const CurrentEntries = () => {
     const submitEmailsButton = document.getElementById('submitEmailsButton')
 
     if (passcode === SECRET) {
+      hidden=false;
       for (let i = 0; i < collection.length; i++)
         collection[i].style.display = 'block'
       doneButton.style.display = 'inline'
@@ -90,6 +92,23 @@ const CurrentEntries = () => {
     setPasscode('')
     refPass.current.value = ''
   }
+  function handleEditList2(e) {
+    const collection = document.getElementsByClassName("editControls")
+    const editButton = document.getElementById('editButton')
+    const doneButton = document.getElementById('doneButton')
+    const editPasscodeInput = document.getElementById('editPasscodeInput')
+    const submitEmailsButton = document.getElementById('submitEmailsButton')
+
+      hidden=false;
+      for (let i = 0; i < collection.length; i++)
+        collection[i].style.display = 'block'
+      doneButton.style.display = 'inline'
+      editButton.style.display = 'none'
+      submitEmailsButton.style.display = 'block'
+
+  
+    setPasscode('')
+  }
 
   function handleFinishedEditing() {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
@@ -97,10 +116,13 @@ const CurrentEntries = () => {
     const doneButton = document.getElementById('doneButton')
     const collection = document.getElementsByClassName("editControls")
     const submitEmailsButton = document.getElementById('submitEmailsButton')
-
+    hidden=true;
     for (let i = 0; i < collection.length; i++)
       collection[i].style.display = 'none'
-    editPasscodeInput.style.visibility = 'hidden'
+      
+    if(editPasscodeInput){
+      editPasscodeInput.style.visibility = 'hidden'
+    }
     doneButton.style.display = 'none'
     editButton.style.display = 'inline'
     editButton.innerHTML = "Edit List"
@@ -110,11 +132,11 @@ const CurrentEntries = () => {
   function checkPasscode(e) {
     const editButton = document.getElementById('editButton')
     if ((e.target.value) === SECRET) {
-      editButton.innerHTML = "OK"
+      editButton.innerHTML = "Show entries"
       editButton.focus()
     }
     else {
-      editButton.innerHTML = "Edit List"
+      editButton.innerHTML = "Show entries"
     }
     setPasscode(e.target.value)
   }
@@ -128,44 +150,73 @@ const CurrentEntries = () => {
     }
   }
 
-  return (
 
-    <div className="currentEntries posRel">
-      <h2>Current Entries</h2>
 
-      <div className='userData'>
-        {entryList.map((val, k) => {
-          return (<div key={k}>
-            <div>{val.last_name}, {val.first_name} <span className="emailListed">{val.email_address}</span> </div>
-
-            <div className="editControls editGui">
-              <button className='delete' onClick={() => {
-
-                deleteEntry(val.email_address)
-              }}>delete</button>
-              <button className='update' onClick={() => {
-                if (newEmail.length > 0) {
-                  updateEmail(val.email_address);
-                }
-              }}>update</button>
-              <input type="email" className="updateInput" placeholder={val.email_address}
-                onChange={(e) => setNewEmail(e.target.value)} />
-            </div>
-          </div>)
-
-        })}
-        <div className="editField editGui">
-          <button id="editButton" onClick={handleEditList}>Edit List</button>
-          <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
-          <input id="editPasscodeInput" ref={refPass} type="password"
-            placeholder='Enter passcode' onChange={checkPasscode}
-            onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
+  if (hidden){
+    //console.log(hidden);
+    return (
+    
+      <div className="currentEntries posRel">
+  
+        <div className='userData'>
+          
+          
+          <div className="editField editGui">
+            <button id="editButton" onClick={handleEditList}>Show entries</button>
+            <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
+            <input id="editPasscodeInput" ref={refPass} type="password"
+              placeholder='Enter passcode' onChange={checkPasscode}
+              onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
+          </div>
+          <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+  
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
-
       </div>
+    )
+
+  }
+  else{
+    //console.log(hidden);
+
+    return (
+    
+     
+    <div className="currentEntries posRel">
+    <h2>Current Entries</h2>
+
+    <div className='userData'>
+      {entryList.map((val, k) => {
+        return (<div key={k}>
+          <div>{val.last_name}, {val.first_name}, {val.team} <span className="emailListed">{val.email_address}</span> </div>
+
+          <div className="editControls editGui">
+            <button className='delete' onClick={() => {
+
+              deleteEntry(val.email_address)
+            }}>delete</button>
+            <button className='update' onClick={() => {
+              if (newEmail.length > 0) {
+                updateEmail(val.email_address);
+              }
+            }}>update</button>
+            <input type="email" className="updateInput" placeholder={val.email_address}
+              onChange={(e) => setNewEmail(e.target.value)} />
+          </div>
+        </div>)
+
+      })}
+      <div className="editField editGui">
+        <button id="editButton" onClick={handleEditList2}>Edit List</button>
+        <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
+       
+      </div>
+      <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+
     </div>
-  )
+  </div>
+    )
+  }
+  
 }
 
 export default CurrentEntries;

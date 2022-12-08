@@ -1,5 +1,5 @@
 const express = require('express')
-const bodyParser = require ('body-parser')
+const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const mysql = require('mysql')
@@ -15,31 +15,52 @@ const db = mysql.createPool({ // createConnection
 
 app.use(cors())
 app.use(express.json())
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 // READ
 app.get("/api/read", (req, res) => {
-    const sqlSelect = "SELECT * FROM volunteers;"
-    db.query(sqlSelect, (err, result) => { 
-        if(err){
+    const sqlSelect = "select first_name, last_name, email_address, team from volunteers;"
+    db.query(sqlSelect, (err, result) => {
+        if (err) {
             throw err;
         }
         res.send(result);
     })
 })
 
+const validateEmail = (email) => {
+    return email.match(
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+  };
+  
+  
+
+
 // CREATE
 app.post("/api/create", (req, res) => {
-    const fn = req.body.first
-    const ln = req.body.last
+   
     const ea = req.body.email
-    const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address) VALUES (?,?,?);"
-    db.query(sqlInsert, [fn, ln, ea], (err, result) => {
-        if(err) throw err
-        console.log("Server posted: ", fn, ln)
-        res.send(result)
-    })
-}) 
+
+    if (validateEmail(ea)) {
+        const fn = req.body.first
+        const ln = req.body.last
+        const t = req.body.team
+        
+        const sqlInsert = "INSERT INTO volunteers (first_name, last_name, email_address, team) VALUES (?,?,?,?);"
+        db.query(sqlInsert, [fn, ln, ea, t], (err, result) => {
+            if (err) throw err
+            console.log("Server posted: ", fn, ln, t)
+            res.send(result)
+        })
+    }
+    else{
+        res.send("no valid email")
+
+        throw 'No valid email';
+    }
+
+})
 
 // DELETE
 app.delete("/api/delete/:emailAddress", (req, res) => {
@@ -47,28 +68,28 @@ app.delete("/api/delete/:emailAddress", (req, res) => {
     console.log(ea)
     const sqlDelete = "DELETE FROM volunteers WHERE email_address = ?";
     db.query(sqlDelete, [ea], (err, result) => {
-        if(err) throw err
+        if (err) throw err
         console.log("Server: deleted: ", ea)
         res.send(result)
-    }) 
+    })
 })
 
 // UPDATE
 app.put("/api/update", (req, res) => {
     // console.log(req)
-    
+
     const ne = req.body.new;
     const oe = req.body.old;
     console.log("Ready to change: ", oe, "to", ne)
     const sqlUpdate = "UPDATE volunteers SET email_address = ? WHERE email_address = ?"
-    db.query(sqlUpdate, [ne, oe], (err, result)=>{
-        if(err)  throw err;
+    db.query(sqlUpdate, [ne, oe], (err, result) => {
+        if (err) throw err;
         console.log("Server changed: ", oe, "to", ne)
         res.send(result)
     })
 })
 
-const PORT = 3000 //process.env.EXPRESSPORT;
+const PORT = process.env.EXPRESSPORT;
 const msg = `Running on PORT ${PORT}`
 app.get("/", (req, res) => {
     res.send(`<h1>Express Server</h1><p>${msg}<p>`)
