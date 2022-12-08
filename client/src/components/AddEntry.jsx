@@ -98,7 +98,7 @@ const AddEntry = () => {
       <div id='userInput'>
         <div>
           <label htmlFor="firstName" >First Name*</label>
-          <input ref={ref1} id="firstName" type="text" name="firstName" placeholder="Mega First Name" onChange={(e) => setFirstName(e.target.value)}
+          <input ref={ref1} id="firstName" type="text" name="firstName" placeholder="First Name" onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
         <div>
