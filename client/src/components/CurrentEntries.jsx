@@ -66,7 +66,7 @@ const CurrentEntries = () => {
 
   const refPass = useRef(null);
 
-  function login(e) {
+  function handleLogin(e) {
     const collection = document.getElementsByClassName("editControls")
     const editButton = document.getElementById('editButton')
     const editPasscodeInput = document.getElementById('editPasscodeInput')
@@ -74,15 +74,7 @@ const CurrentEntries = () => {
     setPasscode('');
     if (passcode === SECRET) {
       hidden=false;
-      for (let i = 0; i < collection.length; i++)
-        collection[i].style.display = 'block'
-      editButton.style.display = 'none'
-      editPasscodeInput.style.visibility = 'hidden'
-
     } else {
-      for (let i = 0; i < collection.length; i++)
-        collection[i].style.display = 'none'
-      editButton.style.display = 'inline'
       editPasscodeInput.style.visibility = 'visible'
       editPasscodeInput.focus()
     }
@@ -111,40 +103,21 @@ const CurrentEntries = () => {
     setPasscode('')
   }
 
-  function logout() {
-    const editPasscodeInput = document.getElementById('editPasscodeInput')
-    const editButton = document.getElementById('editButton')
-    const doneButton = document.getElementById('doneButton')
-    const collection = document.getElementsByClassName("editControls")
-    const submitEmailsButton = document.getElementById('submitEmailsButton')
+  function handleLogout() {
     hidden=true;
-    for (let i = 0; i < collection.length; i++)
-      collection[i].style.display = 'none'
-      
-    if(editPasscodeInput){
-      editPasscodeInput.style.visibility = 'hidden'
-    }
-    doneButton.style.display = 'none'
-    editButton.style.display = 'inline'
-    editButton.innerHTML = "Edit List"
-    submitEmailsButton.style.display = 'none'
   }
 
   function handleFinishedEditing() {
-    //const editPasscodeInput = document.getElementById('editPasscodeInput')
     const editButton = document.getElementById('editButton')
     const doneButton = document.getElementById('doneButton')
     const collection = document.getElementsByClassName("editControls")
     const ticketDiv = document.getElementById('ticketDiv')
     const logoutButton = document.getElementById('logoutButton')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
-    //hidden=true;
+    
     for (let i = 0; i < collection.length; i++)
       collection[i].style.display = 'none'
       
-    /*if(editPasscodeInput){
-      editPasscodeInput.style.visibility = 'hidden'
-    }*/
     doneButton.style.display = 'none'
     editButton.style.display = 'inline'
     editButton.innerHTML = "Edit List"
@@ -185,7 +158,7 @@ const CurrentEntries = () => {
         <div className='userData'>
           
           <div className="editField editGui">
-            <button id="editButton" onClick={login}>Log in</button>
+            <button id="editButton" onClick={handleLogin}>Log in</button>
             <input id="editPasscodeInput" ref={refPass} type="password"
               placeholder='Enter passcode' onChange={checkPasscode}
               onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
@@ -200,7 +173,6 @@ const CurrentEntries = () => {
     //console.log(hidden);
 
     return (
-    
     
     <div className="currentEntries posRel">
     <h2>Current Entries</h2>
@@ -237,7 +209,7 @@ const CurrentEntries = () => {
         <Tickets />
       </div>
       <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
-      <button id="logoutButton" className='adminBtn' onClick={logout}>Log out</button>
+      <button id="logoutButton" className='adminBtn' onClick={handleLogout}>Log out</button>
     </div>
     )
   }
