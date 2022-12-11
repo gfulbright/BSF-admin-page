@@ -94,7 +94,8 @@ const CurrentEntries = () => {
     const editButton = document.getElementById('editButton')
     const doneButton = document.getElementById('doneButton')
     const editPasscodeInput = document.getElementById('editPasscodeInput')
-    //const logoutButton = document.getElementById('logoutButton')
+    const ticketDiv = document.getElementById('ticketDiv')
+    const logoutButton = document.getElementById('logoutButton')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
 
       hidden=false;
@@ -102,7 +103,8 @@ const CurrentEntries = () => {
         collection[i].style.display = 'block'
       doneButton.style.display = 'inline'
       editButton.style.display = 'none'
-      //logoutButton.style.display = 'none'
+      ticketDiv.style.visibility = "hidden"
+      logoutButton.style.display = 'none'
       submitEmailsButton.style.display = 'none'
 
   
@@ -133,7 +135,8 @@ const CurrentEntries = () => {
     const editButton = document.getElementById('editButton')
     const doneButton = document.getElementById('doneButton')
     const collection = document.getElementsByClassName("editControls")
-    //const logoutButton = document.getElementById('logoutButton')
+    const ticketDiv = document.getElementById('ticketDiv')
+    const logoutButton = document.getElementById('logoutButton')
     const submitEmailsButton = document.getElementById('submitEmailsButton')
     //hidden=true;
     for (let i = 0; i < collection.length; i++)
@@ -145,7 +148,8 @@ const CurrentEntries = () => {
     doneButton.style.display = 'none'
     editButton.style.display = 'inline'
     editButton.innerHTML = "Edit List"
-    //logoutButton.style.display = 'block'
+    ticketDiv.style.visibility = "visible"
+    logoutButton.style.display = 'block'
     submitEmailsButton.style.display = 'block'
   }
 
@@ -229,7 +233,9 @@ const CurrentEntries = () => {
         
         </div>
       </div>
-      <Tickets />
+      <div id="ticketDiv">
+        <Tickets />
+      </div>
       <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
       <button id="logoutButton" className='adminBtn' onClick={logout}>Log out</button>
     </div>
