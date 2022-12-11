@@ -228,12 +228,10 @@ const CurrentEntries = () => {
           <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
         
         </div>
-        <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
-        <button id="logoutButton" className='adminBtn' onClick={logout}>Log out</button>
-
       </div>
-      <hr />
       <Tickets />
+      <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
+      <button id="logoutButton" className='adminBtn' onClick={logout}>Log out</button>
     </div>
     )
   }
