@@ -162,8 +162,6 @@ const CurrentEntries = () => {
           </div>
   
         </div>
-        <hr />
-        <Tickets />
       </div>
     )
 
