@@ -24,7 +24,7 @@ const CurrentEntries = () => {
     let objectWithValue = {}
     entryList.forEach(entry => {
       if (Object.values(entry).indexOf(objVal) > -1) { // email value is inside obj inside array
-        console.log('entry', entry)
+        //console.log('entry', entry)
         objectWithValue = entry
       }
     })
@@ -81,6 +81,7 @@ const CurrentEntries = () => {
     setPasscode('')
     refPass.current.value = ''
   }
+  
   function handleEditList(e) {
     const collection = document.getElementsByClassName("editControls")
     const editButton = document.getElementById('editButton')
@@ -88,7 +89,6 @@ const CurrentEntries = () => {
     const editPasscodeInput = document.getElementById('editPasscodeInput')
     const ticketDiv = document.getElementById('ticketDiv')
     const logoutButton = document.getElementById('logoutButton')
-    const submitEmailsButton = document.getElementById('submitEmailsButton')
 
       hidden=false;
       for (let i = 0; i < collection.length; i++)
@@ -97,7 +97,6 @@ const CurrentEntries = () => {
       editButton.style.display = 'none'
       ticketDiv.style.visibility = "hidden"
       logoutButton.style.display = 'none'
-      submitEmailsButton.style.display = 'none'
 
   
     setPasscode('')
@@ -113,7 +112,6 @@ const CurrentEntries = () => {
     const collection = document.getElementsByClassName("editControls")
     const ticketDiv = document.getElementById('ticketDiv')
     const logoutButton = document.getElementById('logoutButton')
-    const submitEmailsButton = document.getElementById('submitEmailsButton')
     
     for (let i = 0; i < collection.length; i++)
       collection[i].style.display = 'none'
@@ -123,7 +121,6 @@ const CurrentEntries = () => {
     editButton.innerHTML = "Edit List"
     ticketDiv.style.visibility = "visible"
     logoutButton.style.display = 'block'
-    submitEmailsButton.style.display = 'block'
   }
 
   function checkPasscode(e) {
@@ -165,6 +162,8 @@ const CurrentEntries = () => {
           </div>
   
         </div>
+        <hr />
+        <Tickets />
       </div>
     )
 
@@ -179,41 +178,39 @@ const CurrentEntries = () => {
 
       <div className='userData'>
         {entryList.map((val, k) => {
-          return (<div key={k}>
+          return (
+          <div key={k}>
             <div>{val.last_name}, {val.first_name}, {val.team} <span className="emailListed">{val.email_address}</span> </div>
 
             <div className="editControls editGui">
               <button className='delete' onClick={() => {
-
                 deleteEntry(val.email_address)
               }}>delete</button>
+              
               <button className='update' onClick={() => {
                 if (newEmail.length > 0) {
                   updateEmail(val.email_address);
                 }
               }}>update</button>
+              
               <input type="email" className="updateInput" placeholder={val.email_address}
                 onChange={(e) => setNewEmail(e.target.value)} />
             </div>
           </div>)
-
         })}
         
         <div className="editField editGui">
           <button id="editButton" onClick={handleEditList}>Edit List</button>
           <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
-        
         </div>
       </div>
       <div id="ticketDiv">
         <Tickets />
       </div>
-      <button id="submitEmailsButton" className='submitBtn' onClick={() => alert('TODO: Send It!')}>Email Vouchers</button>
       <button id="logoutButton" className='adminBtn' onClick={handleLogout}>Log out</button>
     </div>
     )
   }
-  
 }
 
 export default CurrentEntries;

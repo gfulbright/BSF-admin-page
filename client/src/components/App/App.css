@@ -65,9 +65,15 @@ body {
 .editGui {
   margin-bottom: 20px;
 }
-.editGui button {
+.editGui button, #ticketDiv button {
   width: 20%;
   margin-right: 1em;
+}
+#ticketDiv #renderBtn {
+  width: 32%
+}
+#ticketDiv #emailBtn {
+  margin-right: 0;
 }
 .editGui input {
   width: 50%;
@@ -76,6 +82,10 @@ body {
 #doneButton{
   display: none;
 }
-#editPasscodeInput{
+#editPasscodeInput {
   visibility: hidden;
+}
+#tickets {
+  display: none;
+  margin-bottom: 15px;
 }

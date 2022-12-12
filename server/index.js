@@ -34,6 +34,15 @@ const validateEmail = (email) => {
     );
   };
   
+app.get("/api/readTickets", (req, res) => {
+    const sqlSelect = "select ticketCode, is_issued, issued_on, issued_to from tickets;"
+    db.query(sqlSelect, (err, result) => {
+        if (err) {
+            throw err;
+        }
+        res.send(result);
+    })
+})
   
 
 

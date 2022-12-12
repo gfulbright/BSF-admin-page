@@ -49,17 +49,14 @@ const AddEntry = () => {
     else{
       alert('No valid email')
     }
-
-
-
   }
 
   function refreshPage() {
     //window.location.reload(false);
   }
-
-
-
+  
+  
+  // Reset Button Color
   let ifname = document.getElementById('firstName');
   if (ifname) {
     ifname.addEventListener('click', function () {
@@ -83,7 +80,7 @@ const AddEntry = () => {
       document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
     })
   }
-
+  
   let iteam = document.getElementById('team');
   if (iteam) {
     iteam.addEventListener('click', function () {
@@ -120,14 +117,11 @@ const AddEntry = () => {
               submitEntry(); refreshPage();
             }
           }
-          }
+        }
         >Add Entry </button>
       </div>
     </div>
   )
-
-
 }
-
 
 export default AddEntry;
