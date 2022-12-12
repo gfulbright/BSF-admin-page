@@ -2,7 +2,7 @@ body {
   margin:0 10px;
 }
 .App {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   max-width:600px;
   margin: auto;
 }
@@ -18,10 +18,11 @@ body {
   width: 90%;
   margin: 10px;
   padding: 10px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 5px;
-  color: #333;
-  background-color:rgba(135, 206, 235, 0.3);
+  /* color: #333; */
+  /* background-color:rgba(135, 206, 235, 0.3); */
+  background-color:rgba(255, 255, 255, 0.3);
 }
 #firstLastName {
   display: grid;
@@ -37,10 +38,30 @@ body {
   justify-content: center;
 }
 .submitBtn {
-  margin: 20px;
+  /* margin: 20px;
   padding: 10px;
   width: 50%;
-  margin: 10px auto;
+  margin: 10px auto; */
+  display: block;
+  width: 250px;
+  margin: 5px auto 15px;
+  padding: 18px;
+  border: 3px solid #b01b1f;
+  border-radius: 5px;
+  background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  color: #b01b1f;
+  font-size: 1.3em;
+  line-height: 27px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 300ms ease 0s; 
+}
+.submitBtn:hover{
+  background-color: #b01b1f;
+  color:#fff;
 }
 .editField{
   margin: 20px 0;
@@ -73,7 +94,27 @@ body {
   padding: 5px;
 }
 #doneButton{
+  /* display: block; */
+  width: 250px;
+  margin: 5px auto 15px;
+  padding: 18px;
+  border: 3px solid #b01b1f;
+  border-radius: 5px;
+  background-color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  color: #b01b1f;
+  font-size: 1.3em;
+  line-height: 27px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 300ms ease 0s;
   display: none;
+}
+#doneButton:hover{
+  background-color: #b01b1f;
+  color:#fff;
 }
 #editPasscodeInput{
   visibility: hidden;
