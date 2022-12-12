@@ -37,6 +37,7 @@ body {
   align-items: left;
   justify-content: center;
 }
+/* <<<<<<< HEAD */
 .submitBtn {
   /* margin: 20px;
   padding: 10px;
@@ -62,6 +63,15 @@ body {
 .submitBtn:hover{
   background-color: #b01b1f;
   color:#fff;
+}
+
+.submitBtn, .adminBtn {
+  margin: 20px;
+  padding: 10px;
+  width: 50%;
+  margin: 10px auto;
+  display: block;
+/* >>>>>>> e0a619a382f9478168aa03bff30faee381f73028 */
 }
 .editField{
   margin: 20px 0;
@@ -118,7 +128,4 @@ body {
 }
 #editPasscodeInput{
   visibility: hidden;
-}
-#submitEmailsButton{
-  display: none;
 }

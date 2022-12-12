@@ -86,7 +86,7 @@ const AddEntry = () => {
 
   let iteam = document.getElementById('team');
   if (iteam) {
-    iemail.addEventListener('click', function () {
+    iteam.addEventListener('click', function () {
       document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
       document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
     })
