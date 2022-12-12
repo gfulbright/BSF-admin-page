@@ -101,7 +101,7 @@ const AddEntry = () => {
         <div>
           <label htmlFor="lastName">Last Name*</label>
           <input ref={ref2} id="lastName" type="text" name="lastName" placeholder="Last Name" onChange={(e) => setLastName(e.target.value)} />
-        </div><br />
+        </div>
         <div className="emailField" >
           <label htmlFor="email">Email Address*</label>
           <input ref={ref3} id="email" type="email" name="email" placeholder="Email Address" onChange={(e) => setEmailAddress(e.target.value)} />
