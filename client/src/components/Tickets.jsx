@@ -1,27 +1,72 @@
 import { useState, useRef, useEffect} from 'react';
 import axios from 'axios'
 
- let hidden = true;
+let hidden = true;
+
  
 const Tickets = () => {
   
-  /*let ticketList = [{ticketCode: "bsftest01", is_issued: false},
-                    {ticketCode: "bsftest02", is_issued: false},
-                    {ticketCode: "bsftest03", is_issued: false}
-  ];*/
   //const [ticketCode, setTicketCode] = useState('');
   const [ticketList, setTicketList] = useState([]);
   let count = ticketList.length;
   //const ticketRef = useRef(null);
-  axios.get(`${process.env.REACT_APP_HOST}/api/readTickets`).then((response) => {
-    setTicketList(response.data)
-  })
   
   // READ
+  axios.get(`${process.env.REACT_APP_HOST}/api/readTickets`).then((response) => {
+    setTicketList(response.data)
+    count = ticketList.length;
+  })
+  
+  // CREATE
+  function insertCodes(codes)
+  {
+    // Insert codes and update ticketList
+    codes.forEach(code => {
+      console.log("in foreach: " + code.toString())
+      axios.post(`${process.env.REACT_APP_HOST}/api/createTickets`, {tCode: code}).then((response) => {
+        setTicketList([...ticketList, {ticketCode: code}]
+        )
+      })
+    })
+    
+    // Update count
+    count = ticketList.length;
+  }
+  
   function handleUploading()
   {
-    // Prompt user for filepath, read in CSV, update database, update list
-    let list = [];
+    let ticketCodes = [];
+    
+    // Get csv Input file
+    const csvInput = document.getElementById("csvFile")
+    const csvFile = csvInput.files[0]
+    if(!csvFile)
+    {
+      alert("Please select a file.")
+      return
+    }
+    if(!csvFile.name.endsWith(".csv"))
+    {
+      alert("Please select a .csv file.")
+      return
+    }
+    
+    // Read input file into array
+    const reader = new FileReader()
+    reader.readAsText(csvFile)
+    reader.onload = function() {
+      ticketCodes = reader.result.split('\r\n')
+      ticketCodes.splice(-1);
+      //console.log(ticketCodes)
+      
+      // Update Database
+      insertCodes(ticketCodes)
+      ticketCodes = []
+    }
+    reader.onerror = function() {
+      alert(reader.error);
+      return
+    }
   }
   
   function handleRendering()
@@ -33,19 +78,14 @@ const Tickets = () => {
     {
       hidden = false
       tickets.style.display= "block"
-      renderBtn.innerHTML = `Hide Remaining Vouchers`
+      renderBtn.innerHTML = `Hide <p>Vouchers</p>`
     }
     else
     {
       hidden = true
       tickets.style.display = "none"
-      renderBtn.innerHTML = `Show Remaining ${count} Vouchers`
+      renderBtn.innerHTML = `Show Vouchers <p>(${count} Available)</p>`
     }
-  }
-  
-  function handleIssuing()
-  {
-    // Somehow let the admin choose users?  Or select all users from that day?
   }
   
   return(
@@ -61,10 +101,18 @@ const Tickets = () => {
       </div>
       
       
-      <button id="renderBtn" onClick={handleRendering}>Show {count} Remaining Vouchers</button>
+      <button id="renderBtn" onClick={handleRendering}>Show Vouchers <p>({count} Available)</p></button>
       <button id="uploadBtn" onClick={handleUploading}>Upload Vouchers</button>
-      <button id="issueBtn" onClick={handleIssuing}>Issue Vouchers</button>
-      <button id="emailBtn" onClick={()=>{alert("Emails sent (Demo)")}}>Email Vouchers</button>
+      <button id="issueBtn" onClick={()=>{
+        alert("Future expansion: Issue vouchers to volunteers from user-selected date")
+      }}>Issue Vouchers</button>
+      <button id="emailBtn" onClick={()=>{
+        alert("Future expansion: Email issued vouchers to volunteers")
+       }}>Email Vouchers</button>
+      <div id="fileInput">
+        <label htmlFor="csvFile" >Upload .csv File:</label>
+        <input type="file" id="csvFile" name="csvFile" accept=".csv" />
+      </div>
     </div>
   )
 }

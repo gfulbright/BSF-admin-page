@@ -70,6 +70,29 @@ app.post("/api/create", (req, res) => {
     }
 
 })
+app.post("/api/createTickets", (req, res) => {
+
+  const tc = req.body.tCode
+  
+  if (tc.length == 9) {
+        
+    const sqlInsert = "INSERT INTO tickets (ticketCode) VALUES (?);"
+    if(db.query(sqlInsert, [tc], (err, result) => {
+      if (err) throw err
+      console.log("Server posted: ", tc)
+      res.send(result)
+    })) {}
+    else
+    {
+    res.send("Invalid ticket code")
+    throw 'Invalid ticket';
+    }
+  }
+  else{
+    res.send("Invalid ticket code")
+    throw 'Invalid ticket';
+  }
+})
 
 // DELETE
 app.delete("/api/delete/:emailAddress", (req, res) => {

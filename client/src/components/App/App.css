@@ -71,9 +71,17 @@ body {
 }
 #ticketDiv #renderBtn {
   width: 32%
+}#ticketDiv #renderBtn p {
+  margin: 0;
 }
 #ticketDiv #emailBtn {
   margin-right: 0;
+}
+#fileInput {
+  margin: 10px;
+}
+#fileInput label {
+  margin-right: 5px;
 }
 .editGui input {
   width: 50%;
