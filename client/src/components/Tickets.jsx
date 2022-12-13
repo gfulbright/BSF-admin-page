@@ -55,7 +55,7 @@ const Tickets = () => {
     const reader = new FileReader()
     reader.readAsText(csvFile)
     reader.onload = function() {
-      ticketCodes = reader.result.split('\n')
+      ticketCodes = reader.result.split('\r\n')
       ticketCodes.splice(-1);
       //console.log(ticketCodes)
       
