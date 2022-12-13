@@ -102,13 +102,13 @@ const Tickets = () => {
       
       
       <button id="renderBtn" className='adminBtn' onClick={handleRendering}>Show Vouchers <p>({count} Available)</p></button>
-      <button id="uploadBtn" className='adminBtn' onClick={handleUploading}>Upload Vouchers</button>
       <button id="issueBtn" className='adminBtn' onClick={()=>{
         alert("Future expansion: Issue vouchers to volunteers from user-selected date")
       }}>Issue Vouchers</button>
       <button id="emailBtn" className='adminBtn' onClick={()=>{
         alert("Future expansion: Email issued vouchers to volunteers")
        }}>Email Vouchers</button>
+      <button id="uploadBtn" className='adminBtn' onClick={handleUploading}>Upload Vouchers</button>
       <div id="fileInput">
         <label htmlFor="csvFile" >Upload .csv File:</label>
         <input type="file" id="csvFile" name="csvFile" accept=".csv" />
