@@ -71,7 +71,8 @@ const AddEntry = () => {
   if (ilname) {
     ilname.addEventListener('click', function () {
       document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
-      document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
+      document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+      document.getElementsByClassName("submitBtn")[0].style.color = "#b01b1f";
     })
   }
 
@@ -79,7 +80,8 @@ const AddEntry = () => {
   if (iemail) {
     iemail.addEventListener('click', function () {
       document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
-      document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
+      document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+      document.getElementsByClassName("submitBtn")[0].style.color = "#b01b1f";
     })
   }
   
@@ -87,7 +89,8 @@ const AddEntry = () => {
   if (iteam) {
     iteam.addEventListener('click', function () {
       document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
-      document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
+      document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+      document.getElementsByClassName("submitBtn")[0].style.color = "#b01b1f";
     })
   }
 
