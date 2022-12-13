@@ -155,7 +155,7 @@ const CurrentEntries = () => {
         <div className='userData'>
           
           <div className="editField editGui">
-            <button id="editButton" onClick={handleLogin}>Log in</button>
+            <button id="editButton" className='adminBtn' onClick={handleLogin}>Log in</button>
             <input id="editPasscodeInput" ref={refPass} type="password"
               placeholder='Enter passcode' onChange={checkPasscode}
               onBlur={(e) => abortPasscodeAttempt(e.target.value)} />
@@ -198,8 +198,8 @@ const CurrentEntries = () => {
         })}
         
         <div className="editField editGui">
-          <button id="editButton" onClick={handleEditList}>Edit List</button>
-          <button id="doneButton" onClick={handleFinishedEditing}>Finished Editing</button>
+          <button id="editButton" className='adminBtn' onClick={handleEditList}>Edit List</button>
+          <button id="doneButton" className='adminBtn' onClick={handleFinishedEditing}>Finished Editing</button>
         </div>
       </div>
       <div id="ticketDiv">

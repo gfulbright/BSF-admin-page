@@ -101,12 +101,12 @@ const Tickets = () => {
       </div>
       
       
-      <button id="renderBtn" onClick={handleRendering}>Show Vouchers <p>({count} Available)</p></button>
-      <button id="uploadBtn" onClick={handleUploading}>Upload Vouchers</button>
-      <button id="issueBtn" onClick={()=>{
+      <button id="renderBtn" className='adminBtn' onClick={handleRendering}>Show Vouchers <p>({count} Available)</p></button>
+      <button id="uploadBtn" className='adminBtn' onClick={handleUploading}>Upload Vouchers</button>
+      <button id="issueBtn" className='adminBtn' onClick={()=>{
         alert("Future expansion: Issue vouchers to volunteers from user-selected date")
       }}>Issue Vouchers</button>
-      <button id="emailBtn" onClick={()=>{
+      <button id="emailBtn" className='adminBtn' onClick={()=>{
         alert("Future expansion: Email issued vouchers to volunteers")
        }}>Email Vouchers</button>
       <div id="fileInput">

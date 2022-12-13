@@ -60,7 +60,6 @@ button {
   text-transform: uppercase;
   cursor: pointer;
   transition: 300ms ease 0s; 
-
 }
 
 #button:hover{
