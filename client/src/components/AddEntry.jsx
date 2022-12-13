@@ -45,6 +45,7 @@ const AddEntry = () => {
       console.log(document.getElementsByClassName("submitBtn")[0])
       document.getElementsByClassName("submitBtn")[0].innerHTML = "Success!";
       document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "green";
+      document.getElementsByClassName("submitBtn")[0].style.color = "white";
     }
     else{
       alert('No valid email')
@@ -62,6 +63,7 @@ const AddEntry = () => {
     ifname.addEventListener('click', function () {
       document.getElementsByClassName("submitBtn")[0].innerHTML = "Add Entry";
       document.getElementsByClassName("submitBtn")[0].style.backgroundColor = "white";
+      document.getElementsByClassName("submitBtn")[0].style.color = "#b01b1f";
     })
   }
 
