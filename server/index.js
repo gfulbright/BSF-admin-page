@@ -75,6 +75,7 @@ app.post("/api/createTickets", (req, res) => {
   const tc = req.body.tCode
   
   if (tc.length == 9) {
+    
     const sqlInsert = "INSERT INTO tickets (ticketCode) VALUES (?) on duplicate key update ticketCode=ticketCode;"
     if(db.query(sqlInsert, [tc], (err, result) => {
       if (err) throw err
