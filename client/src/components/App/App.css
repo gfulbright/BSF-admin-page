@@ -120,9 +120,10 @@ button {
 }
 .editGui button, #ticketDiv button {
   /* width: 20%; */
+  margin-right: 1em;
   width: 10em;
 }
-#ticketDiv #renderBtn {
+#ticketDiv, #renderBtn {
   width: 32%
 }#ticketDiv, #renderBtn p {
   margin: 0;
