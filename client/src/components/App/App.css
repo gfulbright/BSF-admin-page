@@ -127,6 +127,10 @@ button {
   /* width: 20%; */
   margin-left: 0em;
 }
+.editGui #updateBtn, .editGui #deleteBtn {
+  display: inline;
+  width: 45%;
+}
 #ticketDiv, #renderBtn {
   width: 32%
 }#ticketDiv, #renderBtn p {
