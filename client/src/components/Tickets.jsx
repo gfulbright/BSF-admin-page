@@ -55,9 +55,8 @@ const Tickets = () => {
     const reader = new FileReader()
     reader.readAsText(csvFile)
     reader.onload = function() {
-      ticketCodes = reader.result.split('\r\n')
+      ticketCodes = reader.result.split('\n')
       ticketCodes.splice(-1);
-      //console.log(ticketCodes)
       
       // Update Database
       insertCodes(ticketCodes)
@@ -95,11 +94,10 @@ const Tickets = () => {
         {ticketList.map((val, k) => {
           return (
           <div key={k}>
-            <div>{val.ticketCode}, {val.is_issued}</div>
+            <div>{val.ticketCode},{val.is_issued}</div>
           </div>)
         })}
       </div>
-      
       
       <button id="renderBtn" className='adminBtn' onClick={handleRendering}>Show Vouchers <p>({count} Available)</p></button>
       <button id="uploadBtn" className='adminBtn' onClick={handleUploading}>Upload Vouchers</button>
