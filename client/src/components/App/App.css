@@ -123,6 +123,11 @@ button {
   margin-right: 1em;
   width: 10em;
 }
+/* GWF */
+.editGui button, #editButton button{
+  /* width: 20%; */
+  margin-left: 0em;
+}
 #ticketDiv, #renderBtn {
   width: 32%
 }#ticketDiv, #renderBtn p {
@@ -133,6 +138,7 @@ button {
 }
 #fileInput {
   margin: 10px;
+  width: 200px;
 }
 #fileInput label {
   margin-right: 5px;
